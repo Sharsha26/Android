@@ -40,6 +40,21 @@ public class Fragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+@Override
+public void onPause(){
+    super.onPause();
+}
 
-
+    @Override
+    public void onStop(){
+        super.onStop();
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+    }
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+    }
 }

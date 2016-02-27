@@ -22,13 +22,13 @@ public class Fragment1 extends Fragment{
     }
 
     @Override
-    @Nullable
+
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.fragment1,container,false);
     }
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
+    public void onCreate( Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
 @Override
@@ -37,6 +37,24 @@ public class Fragment1 extends Fragment{
 }
 @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
-    super.onViewCreated(view,savedInstanceState);
+    super.onViewCreated(view, savedInstanceState);
 }
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+    }
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+    }
+
+
 }

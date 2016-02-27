@@ -5,9 +5,10 @@
     android:orientation="vertical"
     android:background="@android:color/holo_orange_light">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="fragment1"/>
+        android:text="fragment_1"/>
 
 </LinearLayout>

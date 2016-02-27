@@ -9,35 +9,52 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
-    Boolean status = true;
+    Boolean status = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) (findViewById(R.id.button));
-        button.setText("Get Fragments");
-    button.setOnClickListener(new View.OnClickListener() {
+        button.setText("Load Fragment");
+        button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+
+
             FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction fttrans = fm.beginTransaction();
 
-            if (status) {
+            FragmentTransaction ft1 = fm.beginTransaction();
+            FragmentTransaction ft2 = fm.beginTransaction();
 
-                fttrans.add(R.id.firstfragment, new Fragment1());
-              //  fttrans.add(R.id.secondfragment, new Fragment2());
-                fttrans.commit();
+            if (!status) {
+Fragment1 fragment1=new Fragment1();
+                Fragment2 fragment2=new Fragment2();
+                ft1.replace(R.id.fragment_container1, fragment1);
+                ft1.addToBackStack(null);
+                ft1.commit();
+                ft2.replace(R.id.fragment_container2, fragment2);
+                ft2.addToBackStack(null);
+                ft2.commit();
+              //  fttrans2.commit();
 
+                status = true;
 
             } else {
-               // fttrans.add(R.id.firstfragment, new Fragment2());
-                  fttrans.add(R.id.secondfragment, new Fragment1());
-                fttrans.commit();
+                Fragment1 fragment1=new Fragment1();
+                Fragment2 fragment2=new Fragment2();
+                ft1.replace(R.id.fragment_container1, fragment2);
+                ft1.addToBackStack(null);
+                ft1.commit();
+                ft2.replace(R.id.fragment_container2, fragment1);
+                ft2.addToBackStack(null);
+                ft2.commit();
+                status = false;
             }
 
-            status = !status;
-            button.setText("Alter Fragments");
+            button.setText("Alter Fragement");
+
         }
     }
     );
