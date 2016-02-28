@@ -25,6 +25,7 @@ public class FragmentLocation extends Fragment {
     TextView lonValue;
     LocationManager locationManager;
     ProgressDialog progressDialog;
+
 double lat;
     double lon;
 
