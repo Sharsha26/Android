@@ -101,6 +101,9 @@ progressDialog.show();
         }
         @Override
         protected Void doInBackground(Void... params) {
+
+
+
             Log.d("TAG","IN back");
 for(String item:data){
     try {
