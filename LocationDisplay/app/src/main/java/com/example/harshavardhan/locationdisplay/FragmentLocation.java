@@ -125,5 +125,6 @@ progressDialog=new ProgressDialog(getContext());
             latValue.setText(""+lat);
             lonValue.setText(""+lon);
         }
+
     }
 }
