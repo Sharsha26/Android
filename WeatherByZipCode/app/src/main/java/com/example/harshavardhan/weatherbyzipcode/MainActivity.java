@@ -19,22 +19,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-@Override
-public void onResume(){
-    super.onResume();
-WeatherFragment fragment1=new WeatherFragment();
-
-    FragmentManager fm=getSupportFragmentManager();
-    FragmentTransaction ft=fm.beginTransaction();
-    ft.add(R.id.fragment,fragment1);
-    ft.commit();
-
-
-}
 
 
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        WeatherFragment fragment1=new WeatherFragment();
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.add(R.id.fragment,fragment1);
+        ft.commit();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
