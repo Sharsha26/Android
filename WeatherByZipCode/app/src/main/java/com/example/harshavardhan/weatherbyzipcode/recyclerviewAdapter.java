@@ -24,12 +24,14 @@ LayoutInflater inflater;
     @Override
     public myviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= inflater.inflate(R.layout.weather_card, parent, false);
+
         return new myviewHolder(view);
     }
 
     @Override
     public void onBindViewHolder( myviewHolder holder, int position) {
         Weather curr=list.get(position);
+
 holder.maxTemp.setText(curr.maxTemp);
         holder.minTemp.setText(curr.minTemp);
         holder.dayTemp.setText(curr.dayTemp);
@@ -41,6 +43,17 @@ holder.maxTemp.setText(curr.maxTemp);
     public int getItemCount() {
         return list.size();
     }
+    public void clearData() {
+        int size = this.list.size();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                this.list.remove(0);
+            }
+
+            this.notifyItemRangeRemoved(0, size);
+        }
+    }
+
     public class myviewHolder extends RecyclerView.ViewHolder{
 TextView minTemp;
         TextView maxTemp;

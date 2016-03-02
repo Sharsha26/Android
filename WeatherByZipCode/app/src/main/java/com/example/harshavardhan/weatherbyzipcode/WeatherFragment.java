@@ -54,8 +54,8 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
+        setRetainInstance(true);
 View view=inflater.inflate(R.layout.fragment_weather,container,false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview);
 
         return view;
 
@@ -73,12 +73,21 @@ View view=inflater.inflate(R.layout.fragment_weather,container,false);
 
     @Override
     public void onResume(){
-        cityText=(TextView)getView().findViewById(R.id.city);
-countryText=(TextView)getView().findViewById(R.id.country);
-        zipCodeText=(TextView)getView().findViewById(R.id.zipcode);
         super.onResume();
+
         new MyClass().execute();
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        cityText=(TextView)view.findViewById(R.id.city);
+        countryText=(TextView)view.findViewById(R.id.country);
+        zipCodeText=(TextView)view.findViewById(R.id.zipcode);
+    }
+
     protected class MyClass extends AsyncTask<Void,Void,List<Weather>>{
         public void onPreExecute(){
             progressDialog=new ProgressDialog(getContext());
@@ -86,7 +95,14 @@ countryText=(TextView)getView().findViewById(R.id.country);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setMessage("Loading Weather data for next 10 days");
             progressDialog.show();
-
+//            if(recyclerView.getAdapter()!=null) {
+//                int count = recyclerView.getAdapter().getItemCount();
+//                for (int i = 1; i <= count; i++) {
+//                    recyclerView.getAdapter().notifyItemChanged(i);
+//                    recyclerView.removeViewAt(i);
+//
+//                }
+//            }
         }
         @Override
         protected List<Weather> doInBackground(Void... params) {
@@ -190,11 +206,6 @@ return null;
 
             }
 
-try {
-    Thread.sleep(3000);
-}catch(Exception e){
-
-}
             return weatherList;
         }
 
@@ -208,9 +219,14 @@ progressDialog.dismiss();
             cityText.setText(city);
             countryText.setText(country);
             zipCodeText.setText(code);
-            adapter=new recyclerviewAdapter(getContext(),s);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setAdapter(new recyclerviewAdapter(getContext(), s));
+
+
+
+
+            //adapter= (recyclerviewAdapter)recyclerView.getAdapter();
+
+
             Log.d("TAG", "temp is" + s);
 
 
