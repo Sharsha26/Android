@@ -2,15 +2,19 @@ package com.example.harshavardhan.listview;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.net.Uri;
 import android.view.View;
 
 /**
  * Created by HARSHA VARDHAN on 3/5/2016.
  */
 public class RecciverActivity extends Activity {
+
+
+
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -22,7 +26,8 @@ public class RecciverActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(receiver,new IntentFilter("com.example.harshavardhan.listview.MyReciever"));
+
+
     }
 
     @Override
@@ -32,9 +37,9 @@ public class RecciverActivity extends Activity {
     }
 
     public void onClick(View view){
-        Intent intent = new Intent(this,FetchDataService.class);
-        intent.putExtra("filename","regrgegr");
-        intent.putExtra("url","www.google.cpm");
-        startService(intent);
+        ContentValues values =  new ContentValues();
+        values.put("Name","Rahul");
+        values.put("Class","Android");
+        Uri uri  = getContentResolver().insert(MyContentProvider.URI,values);
     }
 }
