@@ -8,10 +8,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+
 /**
  * Created by HARSHA VARDHAN on 3/5/2016.
  */
 public class RecciverActivity extends Activity {
+
+
+    MapFragment mapsFragment;
 
 
 
@@ -26,6 +32,8 @@ public class RecciverActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+       GoogleMap map  =mapsFragment.getMap();
+        map.
 
 
     }

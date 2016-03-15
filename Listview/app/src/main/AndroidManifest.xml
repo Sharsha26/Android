@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.harshavardhan.listview">
 
+
+    <permission android:name="com.example.harshavardhan.listview.permission.C2D_MESSAGGE"
+        android:protectionLevel="signature"
+        />
+
+    <uses-permission android:name="com.example.harshavardhan.listview.permission.C2D_MESSAGGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +27,15 @@
             </intent-filter>
         </activity>
         <service android:name=".FetchDataService" />
+
+        <receiver android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:banner="com.google.android.c2dm.permission.SEND"
+            />
+        <intent-filter>
+            <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            <category android:name="com.harsha.listview.gcm"
+        </intent-filter>
 
 
         <receiver android:name=".CustomBroadcastReciever"
